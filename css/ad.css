@@ -1,0 +1,21 @@
+.hero-unit {
+	padding-bottom: 5%;
+  }
+  .hero-unit h1 {
+	margin-bottom: 0;
+	font-size: 60px;
+	line-height: 1;
+	color: inherit;
+	letter-spacing: -1px;
+  }
+  .hero-unit p {
+	font-size: 18px;
+	font-weight: 200;
+	line-height: 27px;
+	color: inherit;
+  }
+  .span4 {
+    width: 250px;
+    background-color: #332b1a89;
+    text-align: center;
+  }
