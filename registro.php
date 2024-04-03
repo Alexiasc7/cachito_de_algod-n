@@ -15,6 +15,55 @@
     </head>
 
 <body>
+<script>
+      function eliminar(id)
+	{   
+		if(confirm("¿ Estas seguro de eliminar el registro ?"))
+		{
+			window.location = "registro_tutos.php?ideliminar=" + id;
+		}
+    
+	}
+
+  function modificar(id)
+	{
+        if (confirm("¿ Estas seguro de modificar el registro ?")) {
+            window.location = "registro_tutos.php?id_tutorial=" + id; 
+        }
+	}
+
+  //BLOQUEO de la tecla ENTER para evitar enviar un campo vacio
+  window.addEventListener("keypress", function(event){
+    if (event.keyCode == 13){
+        event.preventDefault();
+    }
+}, false);
+    </script>
+     <?php
+
+//IMPORTA ARCHIVO DE CONEXION QUE CONTIENE LA CLASE DE CONEXION A MYSQL//
+    require 'database/conexion_bd.php';
+//CREAR EL OBJETO DE LA CLASE BD_PDO//
+    $obj = new BD_PDO();
+//REALIZAMOS UNA PETICION SQL AL SERVER A TRAVES DEL OBJETO//
+    $tblusua = $obj->Ejecutar_Instruccion("SELECT * from usuarios ");
+
+    if(isset($_POST['botoninsertar']))
+    {
+              
+        $id_usua = $_POST['id_usua'];
+        $correo = $_POST['correo'];
+        $contrasena = $_POST['contrasena'];
+        $privilegio = $_POST['privilegio'];
+       
+            $obj->Ejecutar_Instruccion("INSERT INTO `usuarios` (`correo`, `contrasena`, `privilegio`)  
+            VALUES ('$correo','$contrasena','$privilegio');");
+           
+          header("location: registro.php");
+          
+    }
+    
+?>
     <div class="header">
         <div class="container">
             <nav class="navbar navbar-inverse" role="navigation">
@@ -60,19 +109,20 @@
                               <br>
                               <br>
                             </div>
-                            <form action="#" method="post">
+                            <form action="registro.php" method="post" id="formularioinsertar" name="formularioinsertar" enctype="multipart/form-data">                         
                               <div class="form-group">
-                                <input type="text" class="form-login" placeholder="Nombre de usuario" required>
+                              <input type="text" id="id_usua" name="id_usua" hidden>     
+                                <input type="text" class="form-login" placeholder="Correo de usuario" name="correo" id="correo" required>
                               </div>
-                              
                               <div class="form-group">
-                                <input type="password" class="form-login" placeholder="Contraseña" required>
+                                <input type="password" class="form-login" placeholder="Contraseña" name="contrasena" id="contrasena" required>
+                                <input type="text" class="form-login" placeholder="Contraseña" name="privilegio" id="privilegio" value="usuario" hidden>
                               </div>
                               <div class="col-md-12">
                                 <fieldset>
                                   <div class="text-content white-button">
-                                    <a style="margin-right: 50%;" href="hacer registro" >Registrarse</a>  
-                                    <a href="login.html" >Iniciar sesion</a>  
+                                    <a style="margin-right: 50%;" href="hacer registro" >Iniciar sesion</a>  
+                                    <input type="submit" name="botoninsertar" class="btn btn-success" id="botoninsertar"  value="Registrarse">
                                   </div>                            
                                 </fieldset>
                               </div>

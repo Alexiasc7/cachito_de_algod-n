@@ -51,13 +51,13 @@
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php" >Inicio</a></li>
+                        <li><a href="index_sesion.php" >Inicio</a></li>
                         <li><a href="conocenos.html" >Conocenos</a></li>
                         <li><a href="contactanos.html" >Contacto</a></li>
                         <li><a href="galeria.php">Proyectos</a></li>
                         <li><a href="ideas.php" >Ideas</a></li>
                         <li><a href="tutos.php"class="scroll-top"  >Tutoriales</a></li>
-                        <li><a href="login.php">Iniciar sesion</a></li>
+                        <li><a href="cerrar_sesion.php">Cerrar sesion</a></li>
                     </ul>
                 </div>
                 <!--/.navbar-collapse-->

@@ -1,3 +1,8 @@
+<?php 
+
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +20,39 @@
     </head>
 
 <body>
+<?php 
+
+require 'database/conexion_bd.php';
+
+$obj = new BD_PDO();
+
+if (isset($_POST['btniniciar'])) {
+    $correo = $_POST['correo'];
+    $contrasena = $_POST['contrasena'];
+    //var_dump($correo, $contrasena);
+    $datos = $obj->Ejecutar_Instruccion("Select * from usuarios where correo='$correo' and contrasena='$contrasena'" );
+
+    if (@$datos[0][0] > 0) {
+        $_SESSION['id_usua'] = $datos[0][0];
+        $_SESSION['correo'] = $datos[0][1];
+        $_SESSION['usuario'] = $datos[0][2];
+        $_SESSION['privilegio'] = $datos[0][3];
+
+        // Verificar si el usuario es administrador
+        if ($_SESSION['privilegio'] == 'admin') {
+            // Redireccionar al usuario a la página de administrador
+            echo '<script>window.location = "admin.html"; </script>';
+            exit; // Detener la ejecución del script después de la redirección
+        } else {
+            // Redireccionar al usuario a otra página (por ejemplo, index.php)
+            echo '<script>window.location = "index_sesion.php"; </script>';
+            exit; // Detener la ejecución del script después de la redirección
+        }
+    } else {
+        echo "<script>alert('Correo incorrecto o Contraseña incorrecta')</script>";
+    }
+}
+?>
     <div class="header">
         <div class="container">
             <nav class="navbar navbar-inverse" role="navigation">
@@ -60,18 +98,18 @@
                               <br>
                               <br>
                             </div>
-                            <form action="#" method="post">
+                            <form action="login.php" method="post">
                               <div class="form-group">
-                                <input type="text" class="form-login" placeholder="Nombre de usuario" required>
+                                <input type="text" class="form-login" placeholder="Nombre de usuario" name="correo" id="correo" required>
                               </div>
                               
                               <div class="form-group">
-                                <input type="password" class="form-login" placeholder="Contraseña" required>
+                                <input type="password" class="form-login" placeholder="Contraseña" name="contrasena" id="contrasena" required>
                               </div>
                               <div class="col-md-12">
                                 <fieldset>
                                   <div class="text-content white-button">
-                                    <a style="margin-right: 50%;" href="entrar a sesion" >Iniciar sesion</a>  
+                                  <input type="submit" name="btniniciar" id="btniniciar"  value="Iniciar">
                                     <a href="registro.html" >Registrarse</a>  
                                   </div>                            
                                 </fieldset>

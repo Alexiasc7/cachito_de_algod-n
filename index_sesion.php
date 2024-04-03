@@ -59,13 +59,13 @@ session_start();
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php" class="scroll-top">Inicio</a></li>
+                        <li><a href="index_sesion.php" class="scroll-top">Inicio</a></li>
                         <li><a href="conocenos.html">Conocenos</a></li>
                         <li><a href="contactanos.html">Contacto</a></li>
-                        <li><a href="#" onclick="alert('Inicia sesion para acceder al contenido')">Proyectos</a></li>
-                        <li><a href="#" onclick="alert('Inicia sesion para acceder al contenido')">Ideas</a></li>
-                        <li><a href="#" onclick="alert('Inicia sesion para acceder al contenido')">Tutoriales</a></li>
-                        <li><a href="login.php">Iniciar sesion</a></li>
+                        <li><a href="galeria.php" >Proyectos</a></li>
+                        <li><a href="ideas.php">Ideas</a></li>
+                        <li><a href="tutos.php">Tutoriales</a></li>
+                        <li><a href="cerrar_sesion.php">Cerrar sesion</a></li>
                     </ul>
                 </div>
                 <!--/.navbar-collapse-->
@@ -104,7 +104,7 @@ session_start();
                         <h2>Se creativo</h2>
                         <div class="primary-button">
                             <h3>Expande tu creatividad y has tus propias creaciones <br> con ayuda de tutoriales</h3>
-                            <a href="#" onclick="alert('Inicia sesion para acceder al contenido')">Tutoriales</a>
+                            <a href="tutos.php">Tutoriales</a>
                         </div>                        
                     </div>                     
                 </div> <!-- .cd-full-width -->
@@ -117,7 +117,7 @@ session_start();
                         <h2>Hazlo tu mismo</h2>
                         <div class="primary-button">
                             <h3>Empieza de lo mas sencillo a lo más avanzado con ayuda de <br> patrones sencillos</h3>
-                            <a href="#" onclick="alert('Inicia sesion para acceder al contenido')">Patrones</a>
+                            <a href="galeria.php">Patrones</a>
                         </div>                           
                     </div>                         
                 </div> <!-- .cd-full-width -->
