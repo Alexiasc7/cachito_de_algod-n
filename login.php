@@ -71,12 +71,8 @@ if (isset($_POST['btniniciar'])) {
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Inicio</a></li>
-                        <li><a href="conocenos.html">Conocenos</a></li>
-                        <li><a href="contactanos.html">Contacto</a></li>
-                        <li><a href="galeria.php" >Proyectos</a></li>
-                        <li><a href="ideas.php">Ideas</a></li>
-                        <li><a href="tutos.php">Tutoriales</a></li>
-                        <li><a href="login.php" class="scroll-top">Iniciar sesion</a></li>
+                        <li><a href="recuperacion.php">¿Olvidaste la contraseña?</a></li>
+                        <li><a href="registro.php">¿No tienes cuenta?</a></li>
                     </ul>
                 </div>
                 <!--/.navbar-collapse-->
@@ -109,8 +105,7 @@ if (isset($_POST['btniniciar'])) {
                               <div class="col-md-12">
                                 <fieldset>
                                   <div class="text-content white-button">
-                                  <input type="submit" name="btniniciar" id="btniniciar"  value="Iniciar">
-                                    <a href="registro.html" >Registrarse</a>  
+                                  <input type="submit" name="btniniciar" class="btn btn-success" id="btniniciar"  value="Ingresar">
                                   </div>                            
                                 </fieldset>
                               </div>

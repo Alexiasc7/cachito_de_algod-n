@@ -1,3 +1,41 @@
+<?php
+session_start();
+
+require 'database/conexion_bd.php';
+$obj = new BD_PDO();
+
+if (isset($_POST['btnrecuperar'])) {
+    $correo = $_POST['correo'];
+
+    // Verificar si el correo existe en la base de datos
+    $datos = $obj->Ejecutar_Instruccion("SELECT * FROM usuarios WHERE correo='$correo'");
+
+    if (@$datos[0][0] > 0) {
+        // Generar una nueva contraseña aleatoria
+        $nueva_contrasena = generarContrasenaAleatoria();
+
+        // Actualizar la contraseña en la base de datos para ese usuario
+        $obj->Ejecutar_Instruccion("UPDATE usuarios SET contrasena='$nueva_contrasena' WHERE correo='$correo'");
+
+        // Mostrar un mensaje con la nueva contraseña
+        echo "<script>alert('Se ha generado una nueva contraseña para tu cuenta. Tu nueva contraseña es: $nueva_contrasena');</script>";
+    } else {
+        echo "<script>alert('El correo proporcionado no está registrado en nuestro sistema.');</script>";
+    }
+}
+
+// Función para generar una contraseña aleatoria
+function generarContrasenaAleatoria($longitud = 8) {
+    $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $longitud_caracteres = strlen($caracteres);
+    $contrasena = '';
+    for ($i = 0; $i < $longitud; $i++) {
+        $indice = rand(0, $longitud_caracteres - 1);
+        $contrasena .= $caracteres[$indice];
+    }
+    return $contrasena;
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,56 +53,6 @@
     </head>
 
 <body>
-<script>
-      function eliminar(id)
-	{   
-		if(confirm("¿ Estas seguro de eliminar el registro ?"))
-		{
-			window.location = "registro_tutos.php?ideliminar=" + id;
-		}
-    
-	}
-
-  function modificar(id)
-	{
-        if (confirm("¿ Estas seguro de modificar el registro ?")) {
-            window.location = "registro_tutos.php?id_tutorial=" + id; 
-        }
-	}
-
-  //BLOQUEO de la tecla ENTER para evitar enviar un campo vacio
-  window.addEventListener("keypress", function(event){
-    if (event.keyCode == 13){
-        event.preventDefault();
-    }
-}, false);
-    </script>
-     <?php
-
-//IMPORTA ARCHIVO DE CONEXION QUE CONTIENE LA CLASE DE CONEXION A MYSQL//
-    require 'database/conexion_bd.php';
-//CREAR EL OBJETO DE LA CLASE BD_PDO//
-    $obj = new BD_PDO();
-//REALIZAMOS UNA PETICION SQL AL SERVER A TRAVES DEL OBJETO//
-    $tblusua = $obj->Ejecutar_Instruccion("SELECT * from usuarios ");
-
-    if(isset($_POST['botoninsertar']))
-    {
-              
-        $id_usua = $_POST['id_usua'];
-        $correo = $_POST['correo'];
-        $contrasena = $_POST['contrasena'];
-        $privilegio = $_POST['privilegio'];
-        $token = bin2hex(random_bytes(16));
-       
-            $obj->Ejecutar_Instruccion("INSERT INTO `usuarios` (`correo`, `contrasena`, `privilegio`, `token`)  
-            VALUES ('$correo','$contrasena','$privilegio','$token');");
-           
-          header("location: registro.php");
-          
-    }
-    
-?>
     <div class="header">
         <div class="container">
             <nav class="navbar navbar-inverse" role="navigation">
@@ -82,7 +70,7 @@
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php" class="scroll-top">Inicio</a></li>
+                        <li><a href="index.php">Inicio</a></li>
                         <li><a href="login.php">¿Ya tienes cuenta?</a></li>
                     </ul>
                 </div>
@@ -100,24 +88,19 @@
                         <div class="row">
                           <div id="form-login" class="col-md-6 col-md-offset-3">
                             <div class="section-heading">
-                              <h4>Registro</h4>
+                              <h4>Recuperar contraseña</h4>
                               <div class="line-dec"></div>
                               <br>
                               <br>
                             </div>
-                            <form action="registro.php" method="post" id="formularioinsertar" name="formularioinsertar" enctype="multipart/form-data">                         
+                            <form action="recuperacion.php" method="post">
                               <div class="form-group">
-                              <input type="text" id="id_usua" name="id_usua" hidden>     
                                 <input type="text" class="form-login" placeholder="Correo de usuario" name="correo" id="correo" required>
-                              </div>
-                              <div class="form-group">
-                                <input type="password" class="form-login" placeholder="Contraseña" name="contrasena" id="contrasena" required>
-                                <input type="text" class="form-login" placeholder="Contraseña" name="privilegio" id="privilegio" value="usuario" hidden>
                               </div>
                               <div class="col-md-12">
                                 <fieldset>
                                   <div class="text-content white-button">
-                                    <input type="submit" name="botoninsertar" class="btn btn-success" id="botoninsertar"  value="Registrarse">
+                                  <input type="submit" name="btnrecuperar" class="btn btn-success" id="btnrecuperar"  value="Ingresar">
                                   </div>                            
                                 </fieldset>
                               </div>
