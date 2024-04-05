@@ -82,7 +82,7 @@
                                     <img height="230px" width="270px" src="<?php echo $row ['imagen']; ?>" /><!--IMAGEN-->
                                     <br>
                                     <div class="text-content white-button" style="text-align: center; padding: 3px;">
-                                <a href="<?php echo $row ['link_drive']; ?>" class="scroll-link" >Ir al tutorial</a>  
+                                    <a href="<?php echo $row ['link_drive']; ?>">Ir al drive</a>  
                                     </div>
                                 </div>                             
                                 <?php } ?>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                      <form id="contact" action="" method="post">
+                    <form id="contact" method="post" action="mailto:alexsalas0420@gmail.com" method="post" enctype="text/plain">
                         <div class="col-md-6">
                           <fieldset>
                             <input name="name" type="text" class="form-control" id="name" placeholder="Tu nombre..." required="">
@@ -127,7 +127,7 @@
                         </div>
                         <div class="col-md-12">
                           <fieldset>
-                            <button type="submit" id="form-submit" class="btn">Envia un correo</button>
+                            <button type="submit" id="form-submit" class="btn" value="Enviar correo">Envia un correo</button>
                           </fieldset>
                         </div>
                       </form>

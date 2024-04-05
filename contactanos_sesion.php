@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Cachito dealgodón</title>
+        <title>Cachito de algodón</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -14,28 +13,6 @@
         <link rel="stylesheet" href="css/tooplate-style.css">
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
-    <?php 
-      require 'database/conexion_bd.php';
-      $obj = new BD_PDO();
-
-      $tblideas = $obj->Ejecutar_Instruccion("SELECT * from ideas ");           
-
-        //var_dump($tblideas);
-      ?>
-      <style>
-        .product-container {
-  margin: 5px;
-  margin-top: 8px;
-  position: relative;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
-  background-color: rgba(0,0,0,0.5);
-}
-.page-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-      </style>
 
 <body>
     <div class="header">
@@ -55,13 +32,13 @@
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index_sesion.php" >Inicio</a></li>
+                        <li><a href="index.php" >Inicio</a></li>
                         <li><a href="conocenos.html" >Conocenos</a></li>
-                        <li><a href="contactanos.html" >Contacto</a></li>
-                        <li><a href="galeria.php"  >Proyectos</a></li>
-                        <li><a href="ideas.php" class="scroll-top">Ideas</a></li>
-                        <li><a href="tutos.php" >Tutoriales</a></li>
-                        <li><a href="cerrar_sesion.php">Cerrar sesion</a></li>
+                        <li><a href="contactanos.html" class="scroll-top" >Contacto</a></li>
+                        <li><a href="galeria.php">Proyectos</a></li>
+                        <li><a href="ideas.php">Ideas</a></li>
+                        <li><a href="tutos.php">Tutoriales</a></li>
+                        <li><a href="login.php">Iniciar sesion</a></li>
                     </ul>
                 </div>
                 <!--/.navbar-collapse-->
@@ -71,36 +48,13 @@
         <!--/.container-->
     </div>
     <!--/.header-->
+
     <div id="blog" class="page-section">
+        <div class="recuadro">
+            <br>
+        <br>
         <div class="container">
-            <div class="row">
-                        <div class="thumb">
-                            <div class="page-content">
-                                <?php foreach ($tblideas as $row) { ?>
-                                  <div class="project-item mix city">
-                                <div class="product-container">                            
-                                    <img height="230px" width="270px" src="<?php echo $row ['imagen']; ?>" /><!--IMAGEN-->
-                                    <div class="hover-effect"  style="justify-content: center;">
-                                    <a href="<?php echo $row ['imagen']; ?>" data-lightbox="image-1"><i class="fa fa-search"></i></a>
-                                       </div>
-                                    </div>
-                                </div>                             
-                                <?php } ?>
-                            </div>
-                        </div>                       
-            </div>
-        </div>
-    </div> 
-    <div id="contact" class="page-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-heading">
-                        <h4>Contactanos</h4>
-                        <div class="line-dec"></div>
-                    </div>
-                </div>
-            </div>
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="map">
@@ -109,7 +63,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                    <form id="contact" method="post" action="mailto:alexsalas0420@gmail.com" method="post" enctype="text/plain">
+                      <form id="contact" method="post" action="mailto:alexsalas0420@gmail.com" method="post" enctype="text/plain">
                         <div class="col-md-6">
                           <fieldset>
                             <input name="name" type="text" class="form-control" id="name" placeholder="Tu nombre..." required="">
@@ -127,7 +81,7 @@
                         </div>
                         <div class="col-md-12">
                           <fieldset>
-                            <button type="submit" id="form-submit" class="btn" value="Enviar correo">Envia un correo</button>
+                            <button type="submit" value="Enviar correo" class="btn">Envia un correo</button>
                           </fieldset>
                         </div>
                       </form>
@@ -136,6 +90,7 @@
             </div>
         </div>
     </div>
+
     <footer>
         <div class="container">
             <div class="row">

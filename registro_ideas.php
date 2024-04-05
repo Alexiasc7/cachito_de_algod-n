@@ -15,6 +15,41 @@
     </head>
 
 <body>
+<script type="text/javascript">
+      function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales)
+       {
+            if(key == especiales[i])
+            {
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        { 
+          alert ("Favor de ingresar solo letras")
+            return false;
+        }
+    }
+      function validarExt()
+   {
+    var imagen = document.getElementById('imagen');
+    var archivoRuta = imagen.value;
+    var extPermitidas =/(.jpg|.jpeg|.png|.gif)$/i;
+    if(!extPermitidas.exec(archivoRuta)){
+        alert('Asegurese de haber seleccionado una imagen');
+        imagen.value = '';
+        return false;
+    }
+   }
+    </script>
 <script>
       function eliminar(id)
 	{   
@@ -136,9 +171,9 @@
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php">Inicio</a></li>
+                        <li><a href="index_sesion.php">Inicio</a></li>
                         <li><a href="admin.html">Regresar</a></li>
-                        <li><a href="login.php" class="scroll-top">Cerrar sesion</a></li>
+                        <li><a href="cerrar_sesion.php" class="scroll-top">Cerrar sesion</a></li>
                     </ul>
                 </div>
                 <!--/.navbar-collapse-->
@@ -164,11 +199,11 @@
                             <div class="form-group">
                             <input type="text" id="id_idea" name="id_idea" value="<?php echo @$idemod[0][0]; ?>"  hidden>     
                             <div class="form-group">
-                                <input name="nombre" id="nombre"  value="<?php echo @$idemod[0][1]; ?>" type="text" class="form-login" placeholder="Titulo" required>
+                                <input name="nombre" id="nombre" onkeypress="return soloLetras(event)" value="<?php echo @$idemod[0][1]; ?>" type="text" class="form-login" placeholder="Titulo" required>
                               </div>
                               
                               <div class="form-group" align="center">
-                                <input type="file" class="btn"  name="imagen" id="imagen" placeholder="Selecciona imagen">
+                                <input type="file" class="btn" onchange="return validarExt()" name="imagen" id="imagen" placeholder="Selecciona imagen">
                                 <input type="hidden" name="imagen_actual" value="<?php echo @$idemod[0][2]; ?>"  ><br>
                                 <img src="<?php echo (isset($idemod) ? @$idemod[0][2] : "img/cotton.png"); ?>"  height="100px" width="100px" >					
 			                 </div>

@@ -13,7 +13,37 @@
         <link rel="stylesheet" href="css/tooplate-style.css">
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
-
+    <script type="text/javascript">
+    function buscar_usuario(id)
+    {
+      $.getJSON("registro.php?correo=" + id).done(function(datos)  
+        {
+          if (datos[0][0]>0) 
+          {
+            alert("El correo ingresado ya esta vinculado con otra sesion, verifique");
+          }
+            
+        });  
+    }
+    function check(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla == 8) {
+        return true;
+    }
+    patron = /[a-z,A-Z,0-9o_.@]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+    function checky(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla == 8) {
+        return true;
+    }
+    patron = /[A-Za-z]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+    </script>
 <body>
 <script>
       function eliminar(id)
@@ -32,38 +62,35 @@
         }
 	}
 
-  //BLOQUEO de la tecla ENTER para evitar enviar un campo vacio
   window.addEventListener("keypress", function(event){
     if (event.keyCode == 13){
         event.preventDefault();
     }
 }, false);
     </script>
-     <?php
+<?php
+require 'database/conexion_bd.php';
+$obj = new BD_PDO();
 
-//IMPORTA ARCHIVO DE CONEXION QUE CONTIENE LA CLASE DE CONEXION A MYSQL//
-    require 'database/conexion_bd.php';
-//CREAR EL OBJETO DE LA CLASE BD_PDO//
-    $obj = new BD_PDO();
-//REALIZAMOS UNA PETICION SQL AL SERVER A TRAVES DEL OBJETO//
-    $tblusua = $obj->Ejecutar_Instruccion("SELECT * from usuarios ");
-
-    if(isset($_POST['botoninsertar']))
-    {
-              
+if(isset($_POST['botoninsertar'])) {
+    $correo = $_POST['correo'];
+    $resultado = $obj->Ejecutar_Instruccion("SELECT COUNT(*) FROM usuarios WHERE correo='$correo'");
+    $fila = $obj->Obtener_Fila($resultado);
+    $usuarios_existentes = $fila[0];
+    if($usuarios_existentes > 0) {
+        echo "<script>alert('El correo ingresado ya está vinculado con otra cuenta.');</script>";
+    } else {
         $id_usua = $_POST['id_usua'];
-        $correo = $_POST['correo'];
         $contrasena = $_POST['contrasena'];
         $privilegio = $_POST['privilegio'];
         $token = bin2hex(random_bytes(16));
-       
-            $obj->Ejecutar_Instruccion("INSERT INTO `usuarios` (`correo`, `contrasena`, `privilegio`, `token`)  
+
+        $obj->Ejecutar_Instruccion("INSERT INTO `usuarios` (`correo`, `contrasena`, `privilegio`, `token`)  
             VALUES ('$correo','$contrasena','$privilegio','$token');");
-           
-          header("location: registro.php");
-          
+       
+        header("location: registro.php");
     }
-    
+}
 ?>
     <div class="header">
         <div class="container">
@@ -108,10 +135,10 @@
                             <form action="registro.php" method="post" id="formularioinsertar" name="formularioinsertar" enctype="multipart/form-data">                         
                               <div class="form-group">
                               <input type="text" id="id_usua" name="id_usua" hidden>     
-                                <input type="text" class="form-login" placeholder="Correo de usuario" name="correo" id="correo" required>
+                                <input type="text" class="form-login" placeholder="Correo de usuario" name="correo" id="correo" onkeypress="return check(event)" required>
                               </div>
                               <div class="form-group">
-                                <input type="password" class="form-login" placeholder="Contraseña" name="contrasena" id="contrasena" required>
+                                <input type="password" class="form-login" minlength="8" maxlength="16" placeholder="Contraseña" name="contrasena" id="contrasena" required>
                                 <input type="text" class="form-login" placeholder="Contraseña" name="privilegio" id="privilegio" value="usuario" hidden>
                               </div>
                               <div class="col-md-12">

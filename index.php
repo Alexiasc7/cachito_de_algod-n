@@ -226,7 +226,7 @@ session_start();
                
                 <div class="col-md-6">
                     <div class="row">
-                      <form id="contact" action="" method="post">
+                    <form id="contact" method="post" action="mailto:alexsalas0420@gmail.com" method="post" enctype="text/plain">
                         <div class="col-md-6">
                           <fieldset>
                             <input name="name" type="text" class="form-control" id="name" placeholder="Tu nombre..." required="">
@@ -244,7 +244,7 @@ session_start();
                         </div>
                         <div class="col-md-12">
                           <fieldset>
-                            <button type="submit" id="form-submit" class="btn">Envia un correo</button>
+                            <button type="submit" id="form-submit" class="btn" value="Enviar correo">Envia un correo</button>
                           </fieldset>
                         </div>
                       </form>

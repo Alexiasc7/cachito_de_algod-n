@@ -1,6 +1,3 @@
-<?php 
-session_start();
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,32 +13,8 @@ session_start();
         <link rel="stylesheet" href="css/tooplate-style.css">
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
-    <?php 
 
-         require 'database/conexion_bd.php';
-         $obj = new BD_PDO();
-
-         $tbladds = $obj->Ejecutar_Instruccion("Select * from anuncios ");
-           
-
-           //var_dump($tbladds);
-       ?>
 <body>
-    <style>
-        .product-container {
-  margin: 5px;
-  margin-top: 8px;
-  padding: 2px 4px 4px;
-  position: relative;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
-  background-color: white;
-}
-.page-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-    </style>
     <div class="header">
         <div class="container">
             <nav class="navbar navbar-inverse" role="navigation">
@@ -59,154 +32,82 @@ session_start();
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index_sesion.php" class="scroll-top">Inicio</a></li>
+                        <li><a href="index_sesion.php">Inicio</a></li>
                         <li><a href="conocenos_sesion.php">Conocenos</a></li>
                         <li><a href="contactanos_sesion.php">Contacto</a></li>
-                        <li><a href="galeria.php" >Proyectos</a></li>
-                        <li><a href="ideas.php">Ideas</a></li>
-                        <li><a href="tutos.php">Tutoriales</a></li>
-                        <li><a href="cerrar_sesion.php">Cerrar sesion</a></li>
+                        <li><a href="galeria.php">Proyectos</a></li>
+                        <li><a href="ideas.php" >Ideas</a></li>
+                        <li><a href="tutos.php" >Tutoriales</a></li>
+                        <li><a href="login.php" >Iniciar sesion</a></li>
                     </ul>
                 </div>
                 <!--/.navbar-collapse-->
-            </nav>
+             </nav>
             <!--/.navbar-->
         </div>
         <!--/.container-->
     </div>
     <!--/.header-->
-
-
     <section class="cd-hero">
-        <ul class="cd-hero-slider autoplay">  
-        <!-- 
-            <ul class="cd-hero-slider autoplay"> for slider auto play 
-            <ul class="cd-hero-slider"> for disabled auto play
-        -->
-            <li class="selected first-slide">
-                <div class="cd-full-width">
-                    <div class="tm-slide-content-div slide-caption">
-                        <span></span>
-                        <h2>Inicia sesion</h2>
-                        <div class="primary-button">
-                            <h3>Al registrarte o iniciar sesion <br> puedes acceder a todo el contenido</h3>
-                            <a href="login.php" data-id="about">Iniciar sesion </a>
-                            
-                        </div>                           
-                    </div>                   
-                </div> <!-- .cd-full-width -->
-            </li>
-
-            <li class="second-slide">
-                <div class="cd-full-width">
-                    <div class="tm-slide-content-div slide-caption">
-                        <span></span>
-                        <h2>Se creativo</h2>
-                        <div class="primary-button">
-                            <h3>Expande tu creatividad y has tus propias creaciones <br> con ayuda de tutoriales</h3>
-                            <a href="tutos.php">Tutoriales</a>
-                        </div>                        
-                    </div>                     
-                </div> <!-- .cd-full-width -->
-            </li>
-
-            <li class="third-slide">
-                <div class="cd-full-width">
-                    <div class="tm-slide-content-div slide-caption">
-                        <span></span>
-                        <h2>Hazlo tu mismo</h2>
-                        <div class="primary-button">
-                            <h3>Empieza de lo mas sencillo a lo más avanzado con ayuda de <br> patrones sencillos</h3>
-                            <a href="galeria.php">Patrones</a>
-                        </div>                           
-                    </div>                         
-                </div> <!-- .cd-full-width -->
-            </li>
-        </ul> <!-- .cd-hero-slider -->
-
-        <div class="cd-slider-nav">
-            <nav>
-                <span class="cd-marker item-1"></span>
-                
-                <ul>
-                    <li class="selected"><a href="#0"></a></li>
-                    <li><a href="#0"></a></li>
-                    <li><a href="#0"></a></li>                        
-                </ul>
-            </nav> 
-        </div> <!-- .cd-slider-nav -->
-    </section> <!-- .cd-hero -->
-
-    <div id="about" class="page-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-heading">
-                        <h4>Descubre</h4>
-                        <div class="line-dec"></div>
+        <div id="what-we-do">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="left-text">
+                            <h2>Conoce nuestra <br>historia </h2>
+                            <h4>El nombre de esta pagina es en memoria de un perrito llamado cachito que le encantaba enredarse en el estambre cuando tejia algo, y algodón ya que la lana que se utiliza para tejer es de algodón, y la union de ambas cosas dio nombre a esta pagina Cachito de algodón</h4>
+                            <ul>
+                                <li>
+                                    <div class="white-button">
+                                        <a href="index.html" class="scroll-link" >Descubre más</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="right-image">
+                            <img src="img/what-we-do-right-image.png" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section> <!-- .cd-hero -->
+
+   
+
+    <div id="fun-facts">
+        <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="service-item first-service">
-                        <div class="icon"></div>
-                        <h4>Personaliza proyectos </h4>
-                        <p>Aprender a crear patrones propios a base de otros y dandoles tu toque personal</p>
+                    <div class="fact-item">
+                        <div class="counter" data-count="500">0</div>
+                        <span>Visitas regulares</span>
                     </div>
                 </div>
-                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="service-item second-service">
-                        <div class="icon"></div>
-                        <h4>Descubre nuevas cosas</h4>
-                        <p>Pasa por la galeria de proyectos y descubre y aprende como hacer cada uno.</p>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="fact-item">
+                        <div class="counter" data-count="100">0</div>
+                        <span>Proyectos </span>
                     </div>
                 </div>
-                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="service-item third-service">
-                        <div class="icon"></div>
-                        <h4>Ponte en contacto</h4>
-                        <p>Si tienes dudas sobre la pagina o proyectos y quieres atencion personal, contactanos!!.</p>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="fact-item">
+                        <div class="counter" data-count="100">0</div>
+                        <span>Usuarios felices</span>
                     </div>
                 </div>
-                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="service-item fourth-service">
-                        <div class="icon"></div>
-                        <h4>Realizalo paso a paso</h4>
-                        <p>Observa los videos para realizar cada proyecto, o usa los patrones si ya eres un experto.</p>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="fact-item">
+                        <div class="counter" data-count="100">0</div>
+                        <span>Creadores apoyados</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="portfolio" class="page-section">
-        <div class="content-wrapper">
-            <div class="inner-container container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-heading">
-                            <h4>Nuevos agregados</h4>
-                            <div class="line-dec"></div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                    <div class="projects-holder">
-                        <div class="row">
-                        <div class="page-content">
-                        <?php foreach ($tbladds as $row) { ?>
-                        <div class="product-container">
-                        <h4><?php echo $row ['titulo']; ?></h3><!--NOMBRE-->
-                            <img height="230px" width="270px" src="<?php echo $row ['imagen']; ?>" /><!--IMAGEN-->
-                        </div>
-                        <?php } ?>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div> 
-    </div>
+
     <div id="contact" class="page-section">
         <div class="container">
             <div class="row">
@@ -223,7 +124,6 @@ session_start();
                         <img src="img/map.jpg" alt="">
                     </div>
                 </div>
-               
                 <div class="col-md-6">
                     <div class="row">
                     <form id="contact" method="post" action="mailto:alexsalas0420@gmail.com" method="post" enctype="text/plain">
@@ -253,8 +153,6 @@ session_start();
             </div>
         </div>
     </div>
-
-
     <footer>
         <div class="container">
             <div class="row">
