@@ -96,41 +96,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-heading">
-                        <h4>Contactanos</h4>
                         <div class="line-dec"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="map">
-                        <img src="img/map.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                    <form id="contact" method="post" action="mailto:alexsalas0420@gmail.com" method="post" enctype="text/plain">
-                        <div class="col-md-6">
-                          <fieldset>
-                            <input name="name" type="text" class="form-control" id="name" placeholder="Tu nombre..." required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-6">
-                          <fieldset>
-                            <input name="email" type="email" class="form-control" id="email" placeholder="Tu email..." required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-12">
-                          <fieldset>
-                            <textarea name="message" rows="6" class="form-control" id="message" placeholder="Tu mensaje..." required=""></textarea>
-                          </fieldset>
-                        </div>
-                        <div class="col-md-12">
-                          <fieldset>
-                            <button type="submit" id="form-submit" class="btn" value="Enviar correo">Envia un correo</button>
-                          </fieldset>
-                        </div>
-                      </form>
                     </div>
                 </div>
             </div>

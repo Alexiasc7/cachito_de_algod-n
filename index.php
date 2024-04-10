@@ -21,7 +21,7 @@ session_start();
          require 'database/conexion_bd.php';
          $obj = new BD_PDO();
 
-         $tbladds = $obj->Ejecutar_Instruccion("Select * from anuncios ");
+         $tblinicio = $obj->Ejecutar_Instruccion("Select * from imagenes_inicio ");
            
 
            //var_dump($tbladds);
@@ -194,6 +194,33 @@ session_start();
                     <div class="projects-holder">
                         <div class="row">
                         <div class="page-content">
+                        <?php foreach ($tblinicio as $row) { ?>
+                        <div class="product-container">
+                            <img height="230px" width="270px" src="<?php echo $row ['imagen']; ?>" /><!--IMAGEN-->
+                        </div>
+                        <?php } ?>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div> 
+    </div>
+    <div id="portfolio" class="page-section">
+        <div class="content-wrapper">
+            <div class="inner-container container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                            <h4>Anuncios</h4>
+                            <div class="line-dec"></div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="projects-holder">
+                        <div class="row">
+                        <div class="page-content">
                         <?php foreach ($tbladds as $row) { ?>
                         <div class="product-container">
                         <h4><?php echo $row ['titulo']; ?></h3><!--NOMBRE-->
@@ -212,49 +239,12 @@ session_start();
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-heading">
-                        <h4>Contactanos</h4>
                         <div class="line-dec"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="map">
-                        <img src="img/map.jpg" alt="">
-                    </div>
-                </div>
-               
-                <div class="col-md-6">
-                    <div class="row">
-                    <form id="contact" method="post" action="mailto:alexsalas0420@gmail.com" method="post" enctype="text/plain">
-                        <div class="col-md-6">
-                          <fieldset>
-                            <input name="name" type="text" class="form-control" id="name" placeholder="Tu nombre..." required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-6">
-                          <fieldset>
-                            <input name="email" type="email" class="form-control" id="email" placeholder="Tu email..." required="">
-                          </fieldset>
-                        </div>
-                        <div class="col-md-12">
-                          <fieldset>
-                            <textarea name="message" rows="6" class="form-control" id="message" placeholder="Tu mensaje..." required=""></textarea>
-                          </fieldset>
-                        </div>
-                        <div class="col-md-12">
-                          <fieldset>
-                            <button type="submit" id="form-submit" class="btn" value="Enviar correo">Envia un correo</button>
-                          </fieldset>
-                        </div>
-                      </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
     <footer>
         <div class="container">
             <div class="row">

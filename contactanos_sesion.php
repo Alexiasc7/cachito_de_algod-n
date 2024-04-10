@@ -1,3 +1,27 @@
+<?php
+
+//IMPORTA ARCHIVO DE CONEXION QUE CONTIENE LA CLASE DE CONEXION A MYSQL//
+    require 'database/conexion_bd.php';
+//CREAR EL OBJETO DE LA CLASE BD_PDO//
+    $obj = new BD_PDO();
+//REALIZAMOS UNA PETICION SQL AL SERVER A TRAVES DEL OBJETO//
+    $tblcorreo = $obj->Ejecutar_Instruccion("SELECT * from correos ");
+
+    if(isset($_POST['botoninsertar']))
+    {
+            
+            $id_correo = $_POST['id_correo'];
+            $nombre = $_POST['nombre'];
+            $correo = $_POST['correo'];
+            $mensaje = $_POST['mensaje'];
+
+            $obj->Ejecutar_Instruccion("INSERT INTO `correos` (`nombre`, `correo`, `mensaje`)  
+            VALUES ('$nombre','$correo','$mensaje');");
+           
+          header("location: contactanos_sesion.php");
+          
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -63,26 +87,26 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                      <form id="contact" method="post" action="mailto:alexsalas0420@gmail.com" method="post" enctype="text/plain">
-                        <div class="col-md-6">
+                      <form id="contact" action="conocenos_sesion.php" method="post" name="formularioinsertar" enctype="multipart/form-data">
+                      <div class="col-md-6">
                           <fieldset>
-                            <input name="name" type="text" class="form-control" id="name" placeholder="Tu nombre..." required="">
+                            <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Tu nombre..." required="">
                           </fieldset>
                         </div>
                         <div class="col-md-6">
                           <fieldset>
-                            <input name="email" type="email" class="form-control" id="email" placeholder="Tu email..." required="">
+                            <input name="correo" type="email" class="form-control" id="correo" placeholder="Tu email..." required="">
                           </fieldset>
                         </div>
                         <div class="col-md-12">
                           <fieldset>
-                            <textarea name="message" rows="6" class="form-control" id="message" placeholder="Tu mensaje..." required=""></textarea>
+                            <textarea name="mensaje" rows="6" class="form-control" id="mensaje" placeholder="Tu mensaje..." required=""></textarea>
                           </fieldset>
                         </div>
                         <div class="col-md-12">
-                          <fieldset>
-                            <button type="submit" value="Enviar correo" class="btn">Envia un correo</button>
-                          </fieldset>
+                         
+                          <input type="submit" name="botoninsertar" class="btn btn-success" id="botoninsertar"  value="Enviar">
+                          
                         </div>
                       </form>
                     </div>
@@ -90,7 +114,7 @@
             </div>
         </div>
     </div>
-
+    
     <footer>
         <div class="container">
             <div class="row">

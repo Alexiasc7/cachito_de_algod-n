@@ -55,7 +55,7 @@
 	{   
 		if(confirm("¿ Estas seguro de eliminar el registro ?"))
 		{
-			window.location = "registro_proyecto.php?ideliminar=" + id;
+			window.location = "registro_inicio.php?ideliminar=" + id;
 		}
     
 	}
@@ -63,7 +63,7 @@
   function modificar(id)
 	{
         if (confirm("¿ Estas seguro de modificar el registro ?")) {
-            window.location = "registro_proyecto.php?id_patron=" + id; 
+            window.location = "registro_inicio.php?id_img=" + id; 
         }
 	}
 
@@ -74,32 +74,27 @@
     }
 }, false);
     </script>
-    <?php
+     <?php
 
 //IMPORTA ARCHIVO DE CONEXION QUE CONTIENE LA CLASE DE CONEXION A MYSQL//
     require 'database/conexion_bd.php';
 //CREAR EL OBJETO DE LA CLASE BD_PDO//
     $obj = new BD_PDO();
 //REALIZAMOS UNA PETICION SQL AL SERVER A TRAVES DEL OBJETO//
-    $tblpatrones = $obj->Ejecutar_Instruccion("SELECT * from patrones ");
-    $tblcat = $obj->Ejecutar_Instruccion("SELECT * from categorias");
+    $tblinicio = $obj->Ejecutar_Instruccion("SELECT * from imagenes_inicio ");
 
     if(isset($_POST['botoninsertar']))
     {
             
-            $id_patron = $_POST['id_patron'];
-            $nombre = $_POST['nombre_patron'];
+            $id_img = $_POST['id_img'];
             $imagen_actual = $_POST['imagen_actual'];
             $nombre_archivo = basename($_FILES['imagen']['name']);
             $dir_subida = 'img/';
             $fichero_subido = $dir_subida . $nombre_archivo;
-            $link_drive = $_POST['link_drive'];
-            $cat = $_POST['cat'];
 
         if($_POST['botoninsertar']=='Modificar')
         {
-            $id_patron = $_POST['id_patron'];
-            $nombre = $_POST['nombre_patron'];
+            $id_img = $_POST['id_img'];
              // Obtener el nombre del archivo de imagen
              $nombre_archivo = basename($_FILES['imagen']['name']);
              $dir_subida = 'img/';
@@ -111,12 +106,10 @@
                  // Si no se proporciona una nueva imagen, conserva la imagen actual
                  $fichero_subido = $imagen_actual;
              }        
-            $link_drive = $_POST['link_drive'];
-            $cat = $_POST['cat'];   
 
-        $obj->Ejecutar_Instruccion("UPDATE `patrones` SET `nombre_patron` = '$nombre', `imagen` = '$fichero_subido', `link_drive` = '$link_drive', `cat` = '$cat' WHERE id_patron = '$id_patron';");
+        $obj->Ejecutar_Instruccion("UPDATE `imagenes_inicio` SET `imagen` = '$fichero_subido' WHERE id_img = '$id_img';");
             
-        header("location: registro_proyecto.php");
+        header("location: registro_inicio.php");
         }
         else if ( $_POST['botoninsertar']=='Insertar') 
         {
@@ -127,39 +120,28 @@
                 // Si no se proporciona una imagen, puedes mostrar una imagen de relleno
                 $fichero_subido = 'img/cotton.png';
             }
-            $obj->Ejecutar_Instruccion("INSERT INTO `patrones` (`nombre_patron`, `imagen`, `link_drive`, `cat`)  
-            VALUES ('$nombre','$fichero_subido','$link_drive', '$cat');");
+            $obj->Ejecutar_Instruccion("INSERT INTO `imagenes_inicio` (`imagen`)  
+            VALUES ('$fichero_subido');");
            
-          header("location: registro_proyecto.php");
+          header("location: registro_inicio.php");
           
         }
     }
     else if(isset($_GET['ideliminar']))
     {
         $eliminar = $_GET['ideliminar'];
-        $obj->Ejecutar_Instruccion("DELETE FROM patrones WHERE id_patron='$eliminar'");
-        header("location: registro_proyecto.php"); 
+        $obj->Ejecutar_Instruccion("DELETE FROM imagenes_inicio WHERE id_img ='$eliminar'");
+        header("location: registro_inicio.php"); 
         
     }
-    elseif (isset($_GET['id_patron'])) 
+    elseif (isset($_GET['id_img'])) 
     {		
-                $idmodificar = $_GET['id_patron'];
-                $pat_mod = $obj->Ejecutar_Instruccion("SELECT * FROM patrones WHERE id_patron = '$idmodificar'");
+                $idmodificar = $_GET['id_img'];
+                $idemod = $obj->Ejecutar_Instruccion("SELECT * FROM imagenes_inicio WHERE id_img = '$idmodificar'");
     }
     
-    
-    if(isset($_POST['botonbuscar']))
-    {
-        $buscar = $_POST['idbuscar'];
-        $result = $obj->Ejecutar_Instruccion("Select * from patrones where nombre like '%$buscar%'");
-        
-    }
-    else
-    {
-        $result=$obj->Ejecutar_Instruccion("Select * from patrones");
-    }
+ 
 ?>
-
     <div class="header">
         <div class="container">
             <nav class="navbar navbar-inverse" role="navigation">
@@ -196,39 +178,23 @@
                         <div class="row">
                           <div id="form-login" class="col-md-6 col-md-offset-3">
                             <div class="section-heading">
-                              <h4>Registro Proyectos</h4>
+                              <h4>Registro Imagenes Inicio</h4>
                               <div class="line-dec"></div>
                               <br>
                               <br>
                             </div>
-                            <form action="registro_proyecto.php" method="post" id="formularioinsertar" name="formularioinsertar" enctype="multipart/form-data">                            
-                                <div class="form-group">
-                            <input type="text" id="id_patron" name="id_patron" value="<?php echo @$pat_mod[0][0]; ?>"  hidden>   
+                            <form action="registro_inicio.php" method="post" id="formularioinsertar" name="formularioinsertar" enctype="multipart/form-data">                         
                             <div class="form-group">
-                                <input name="nombre_patron" id="nombre_patron" onkeypress="return soloLetras(event)" value="<?php echo @$pat_mod[0][1]; ?>"  type="text" class="form-login" placeholder="Titulo" required>
-                              </div>
+                            <input type="text" id="id_img" name="id_img$id_img" value="<?php echo @$idemod[0][0]; ?>"  hidden>     
                               <div class="form-group" align="center">
                                 <input type="file" class="btn" onchange="return validarExt()" name="imagen" id="imagen" placeholder="Selecciona imagen">
-                                <input type="hidden" name="imagen_actual" value="<?php echo @$pat_mod[0][2]; ?>"  ><br>
-                                <img src="<?php echo (isset($pat_mod) ? @$pat_mod[0][2] : "img/cotton.png"); ?>"  height="100px" width="100px" >					
+                                <input type="hidden" name="imagen_actual" value="<?php echo @$idemod[0][1]; ?>"  ><br>
+                                <img src="<?php echo (isset($idemod) ? @$idemod[0][1] : "img/cotton.png"); ?>"  height="100px" width="100px" >					
 			                 </div>
-                              <div class="form-group">
-                                <input name="link_drive" id="link_drive" value="<?php echo @$pat_mod[0][3]; ?>" type="text" class="form-login" placeholder="Link drive"  required>
-                              </div>
-                              <div class="form-group">
-                              <select class="form-login" id="cat" class="email-bt" name="cat" placeholder="Selecciona categoria" required>
-                                <option disabled selected>Categoria</option>
-                                <?php foreach ($tblcat as $renglon) {
-                                $selected_cat = ($renglon[1] == @$pat_mod[0][4]) ? 'selected' : '';
-                                echo "<option value=\"$renglon[1]\" $selected_cat>{$renglon['nombre_cat']}</option>";
-                                }?>
-                            </select>
-                                
-                              </div>
-                              <div class="col-md-12">
+                             <div class="col-md-12">
                                 <fieldset>
                                   <div class="text-content white-button " style="text-align: center;">
-                                  <input type="submit" name="botoninsertar" class="btn btn-success" id="botoninsertar"  value="<?php echo isset($_GET['id_patron']) ? 'Modificar' : 'Insertar'; ?>">
+                                  <input type="submit" name="botoninsertar" class="btn btn-success" id="botoninsertar"  value="<?php echo isset($_GET['id_img']) ? 'Modificar' : 'Insertar'; ?>">
                                   </div>                            
                                 </fieldset>
                               </div>
@@ -238,30 +204,23 @@
                       </div>
                       <br>
                       <br>
-    
-    <div class="table-responsive-lg">                 
+    <div class="">                 
     <table class="table table-striped" id="myTable">
     <thead>
         <tr> 
             <th>ID</th>
-            <th>Nombre</th>
-            <th>imagen</th>
-            <th>link</th>
-            <th>categoria</th>
+            <th>Imagen</th>
             <th>Eliminar</th>
             <th>Editar</th>
         </tr>    
     </thead>    
             <tbody>
-    <?php foreach ($result as $row) { ?>
+    <?php foreach ($tblinicio as $row) { ?>
                 <tr>
                 <td><?php echo $row[0]; ?></td>
-                <td><?php echo $row[1]; ?></td>
-                <td  align="center"><img height="100px" width="100px" src="<?php echo $row [2];?>" ></td>
-                <td><?php echo $row[3]; ?></td>
-                <td><?php echo $row[4]; ?></td>
+                <td  align="center"><img height="100px" width="100px" src="<?php echo $row [1];?>" ></td>
                 <td align="center">
-                <input  type="button" name="botoneliminar" id="botonliminar" class="btn btn-danger" value="Eliminar" 
+                <input  type="button" name="botoneliminar" id="botoneliminar" class="btn btn-danger" value="Eliminar" 
                 onclick="javascript: eliminar('<?php echo $row[0]; ?>');">
                 </td>
                 <td align="center">
@@ -307,13 +266,6 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-        $('#myTable').DataTable({
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.13.2/i18n/es-MX.json'
-            }
-        });
-    });
     $(document).ready(function() {
         // navigation click actions 
         $('.scroll-link').on('click', function(event){
@@ -348,6 +300,13 @@
             log: function() { }
         };
     }
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.13.2/i18n/es-MX.json'
+            }
+        });
+    });
     </script>
 </body>
 </html>

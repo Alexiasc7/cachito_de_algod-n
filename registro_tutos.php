@@ -226,7 +226,7 @@
                       <br>
                       <br>
     <div class="table-responsive-lg">                 
-    <table class="table table-hover table-bordered" id="myTable">
+    <table class="table table-striped" id="myTable">
     <thead>
         <tr> 
             <th>ID</th>

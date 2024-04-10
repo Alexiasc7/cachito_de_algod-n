@@ -221,7 +221,7 @@
                       <br>
                       <br>
     <div class="table-responsive-lg">                 
-    <table class="table table-hover table-bordered" id="myTable">
+    <table class="table table-striped" id="myTable">
     <thead>
         <tr> 
             <th>ID</th>
@@ -238,7 +238,7 @@
                 <td><?php echo $row[1]; ?></td>
                 <td  align="center"><img height="100px" width="100px" src="<?php echo $row [2];?>" ></td>
                 <td align="center">
-                <input  type="button" name="botoneliminar" id="botonliminar" class="btn btn-danger" value="Eliminar" 
+                <input  type="button" name="botoneliminar" id="botoneliminar" class="btn btn-danger" value="Eliminar" 
                 onclick="javascript: eliminar('<?php echo $row[0]; ?>');">
                 </td>
                 <td align="center">
