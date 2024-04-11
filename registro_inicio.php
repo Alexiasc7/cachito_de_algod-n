@@ -185,7 +185,7 @@
                             </div>
                             <form action="registro_inicio.php" method="post" id="formularioinsertar" name="formularioinsertar" enctype="multipart/form-data">                         
                             <div class="form-group">
-                            <input type="text" id="id_img" name="id_img$id_img" value="<?php echo @$idemod[0][0]; ?>"  hidden>     
+                            <input type="text" id="id_img" name="id_img" value="<?php echo @$idemod[0][0]; ?>"  hidden>     
                               <div class="form-group" align="center">
                                 <input type="file" class="btn" onchange="return validarExt()" name="imagen" id="imagen" placeholder="Selecciona imagen">
                                 <input type="hidden" name="imagen_actual" value="<?php echo @$idemod[0][1]; ?>"  ><br>

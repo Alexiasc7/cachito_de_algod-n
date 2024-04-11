@@ -22,6 +22,8 @@ session_start();
          $obj = new BD_PDO();
 
          $tblinicio = $obj->Ejecutar_Instruccion("Select * from imagenes_inicio ");
+         $tbladds = $obj->Ejecutar_Instruccion("Select * from anuncios ");
+
            
 
            //var_dump($tbladds);

@@ -85,7 +85,7 @@
                         <div class="row">
                           <div id="form-login" class="col-md-6 col-md-offset-3">
                           <div class="table-responsive-lg">                 
-                            <table class="table table-hover table-bordered" id="myTable">
+                            <table class="table table-striped"  id="myTable">
                             <thead>
                                 <tr> 
                                     <th>ID</th>

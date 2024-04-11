@@ -56,8 +56,8 @@
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index_sesion.php" >Inicio</a></li>
-                        <li><a href="conocenos.html" >Conocenos</a></li>
-                        <li><a href="contactanos.html" >Contacto</a></li>
+                        <li><a href="conocenos_sesion.php" >Conocenos</a></li>
+                        <li><a href="contactanos_sesion.php" >Contacto</a></li>
                         <li><a href="galeria.php"  >Proyectos</a></li>
                         <li><a href="ideas.php" class="scroll-top">Ideas</a></li>
                         <li><a href="tutos.php" >Tutoriales</a></li>
