@@ -4,17 +4,17 @@ session_start();
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Cachito de algodón</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/fontAwesome.css">
-        <link rel="stylesheet" href="css/hero-slider.css">
-        <link rel="stylesheet" href="css/tooplate-style.css">
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cachito de algodón</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/fontAwesome.css">
+    <link rel="stylesheet" href="css/hero-slider.css">
+    <link rel="stylesheet" href="css/tooplate-style.css">
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
     <?php 
 
@@ -45,41 +45,47 @@ session_start();
 }
     </style>
     <div class="header">
-        <div class="container">
-            <nav class="navbar navbar-inverse" role="navigation">
-                <div class="navbar-header">
-                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="#" class="navbar-brand scroll-top">
-                        <div class="logo"></div>
-                    </a>
-                </div>
-                <!--/.navbar-header-->
-                <div id="main-nav" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="index.php" class="scroll-top">Inicio</a></li>
-                        <li><a href="conocenos.html">Conocenos</a></li>
-                        <li><a href="contactanos.html">Contacto</a></li>
-                        <li><a href="#" onclick="alert('Inicia sesion para acceder al contenido')">Proyectos</a></li>
-                        <li><a href="#" onclick="alert('Inicia sesion para acceder al contenido')">Ideas</a></li>
-                        <li><a href="#" onclick="alert('Inicia sesion para acceder al contenido')">Tutoriales</a></li>
-                        <li><a href="login.php">Iniciar sesion</a></li>
-                    </ul>
-                </div>
-                <!--/.navbar-collapse-->
-            </nav>
-            <!--/.navbar-->
-        </div>
-        <!--/.container-->
+    <div class="container">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand scroll-top">
+                    <div class="logo"></div>
+                </a>
+            </div>
+            <!--/.navbar-header-->
+            <div id="main-nav" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                <li style="margin-top: 15px;">
+                    <form id="search-form" class="search-form">
+                        <input type="text" id="search-input" placeholder="Buscar">
+                        <button type="submit" id="search-button">Buscar</button>
+                    </form>
+                </li>
+                    <li><a href="conocenos.html">Conocenos</a></li>
+                    <li><a href="contactanos.html">Contacto</a></li>
+                    <li><a href="#" onclick="alert('Inicia sesion para acceder al contenido')">Galeria</a></li>
+                    <li><a href="#" onclick="alert('Inicia sesion para acceder al contenido')">Ideas</a></li>
+                    <li><a href="#" onclick="alert('Inicia sesion para acceder al contenido')">Tutos</a></li>
+                    <li><a href="login.php">Inicia sesion</a></li>
+                </ul>
+            </div>
+            <!--/.navbar-collapse-->
+        </nav>
+        <!--/.navbar-->
     </div>
+    <!--/.container-->
+</div>
+
     <!--/.header-->
 
 
-    <section class="cd-hero">
+    <section class="cd-hero searchable">
         <ul class="cd-hero-slider autoplay">  
         <!-- 
             <ul class="cd-hero-slider autoplay"> for slider auto play 
@@ -139,7 +145,7 @@ session_start();
         </div> <!-- .cd-slider-nav -->
     </section> <!-- .cd-hero -->
 
-    <div id="about" class="page-section">
+    <div id="about" class="page-section searchable">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -181,7 +187,7 @@ session_start();
             </div>
         </div>
     </div>
-    <div id="portfolio" class="page-section">
+    <div id="portfolio" class="page-section searchable">
         <div class="content-wrapper">
             <div class="inner-container container">
                 <div class="row">
@@ -208,7 +214,7 @@ session_start();
             </div>
         </div> 
     </div>
-    <div id="portfolio" class="page-section">
+    <div id="portfolio" class="page-section searchable">
         <div class="content-wrapper">
             <div class="inner-container container">
                 <div class="row">
@@ -247,7 +253,7 @@ session_start();
             </div>
         </div>
     </div>
-    <footer>
+    <footer class="searchable">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -267,18 +273,39 @@ session_start();
             </div>
         </div>
     </footer>
-
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
-    <script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
 
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
+$(document).ready(function(){
+    // Manejar el evento de entrada en el campo de búsqueda
+    $("#search-input").on("input", function(){
+        var textoBusqueda = $(this).val().toLowerCase(); // Obtener el texto de búsqueda y convertirlo a minúsculas
+        // Recorrer todos los elementos relevantes en la página
+        $(".searchable").each(function(){
+            var elemento = $(this);
+            var contenido = elemento.text().toLowerCase(); // Obtener el texto del elemento y convertirlo a minúsculas
+            // Mostrar u ocultar el elemento según si coincide con la búsqueda
+            if(contenido.includes(textoBusqueda)) {
+                elemento.show();
+            } else {
+                elemento.hide();
+            }
+        });
+    });
+
+    // Evitar que el formulario se envíe
+    $("#search-form").submit(function(e){
+        e.preventDefault();
+    });
+});
+</script>
+<script type="text/javascript">
     $(document).ready(function() {
         // navigation click actions 
         $('.scroll-link').on('click', function(event){
@@ -313,6 +340,6 @@ session_start();
             log: function() { }
         };
     }
-    </script>
+</script>
 </body>
 </html>

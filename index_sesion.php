@@ -59,12 +59,17 @@ session_start();
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index_sesion.php" class="scroll-top">Inicio</a></li>
+                    <li style="margin-top: 15px;">
+                    <form id="search-form" class="search-form">
+                        <input type="text" id="search-input" placeholder="Buscar">
+                        <button type="submit" id="search-button">Buscar</button>
+                    </form>
+                </li>
                         <li><a href="conocenos_sesion.php">Conocenos</a></li>
                         <li><a href="contactanos_sesion.php">Contacto</a></li>
-                        <li><a href="galeria.php" >Proyectos</a></li>
+                        <li><a href="galeria.php" >Galeria</a></li>
                         <li><a href="ideas.php">Ideas</a></li>
-                        <li><a href="tutos.php">Tutoriales</a></li>
+                        <li><a href="tutos.php">Tutos</a></li>
                         <li><a href="cerrar_sesion.php">Cerrar sesion</a></li>
                     </ul>
                 </div>
@@ -77,7 +82,7 @@ session_start();
     <!--/.header-->
 
 
-    <section class="cd-hero">
+    <section class="cd-hero searchable">
         <ul class="cd-hero-slider autoplay">  
         <!-- 
             <ul class="cd-hero-slider autoplay"> for slider auto play 
@@ -137,7 +142,7 @@ session_start();
         </div> <!-- .cd-slider-nav -->
     </section> <!-- .cd-hero -->
 
-    <div id="about" class="page-section">
+    <div id="about" class="page-section searchable">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -179,7 +184,7 @@ session_start();
             </div>
         </div>
     </div>
-    <div id="portfolio" class="page-section">
+    <div id="portfolio" class="page-section searchable">
         <div class="content-wrapper">
             <div class="inner-container container">
                 <div class="row">
@@ -195,7 +200,7 @@ session_start();
                         <div class="row">
                         <div class="page-content">
                         <?php foreach ($tblinicio as $row) { ?>
-                        <div class="product-container">
+                        <div class="product-container searchable">
                             <img height="230px" width="270px" src="<?php echo $row ['imagen']; ?>" /><!--IMAGEN-->
                         </div>
                         <?php } ?>
@@ -206,7 +211,7 @@ session_start();
             </div>
         </div> 
     </div>
-    <div id="portfolio" class="page-section">
+    <div id="portfolio" class="page-section ">
         <div class="content-wrapper">
             <div class="inner-container container">
                 <div class="row">
@@ -218,11 +223,11 @@ session_start();
                     </div>
                 </div>
                 <br>
-                <div class="projects-holder">
+                <div class="projects-holder ">
                         <div class="row">
-                        <div class="page-content">
+                        <div class="page-content ">
                         <?php foreach ($tbladds as $row) { ?>
-                        <div class="product-container">
+                        <div class="product-container searchable">
                         <h4><?php echo $row ['titulo']; ?></h3><!--NOMBRE-->
                             <img height="230px" width="270px" src="<?php echo $row ['imagen']; ?>" /><!--IMAGEN-->
                         </div>
@@ -234,7 +239,7 @@ session_start();
             </div>
         </div> 
     </div>
-    <div id="contact" class="page-section">
+    <div id="contact" class="page-section searchable">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -265,8 +270,6 @@ session_start();
             </div>
         </div>
     </footer>
-
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
@@ -274,9 +277,29 @@ session_start();
 
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
+    $(document).ready(function(){
+        // Manejar el evento de entrada en el campo de búsqueda
+        $("#search-input").on("input", function(){
+            var textoBusqueda = $(this).val().toLowerCase(); // Obtener el texto de búsqueda y convertirlo a minúsculas
+            // Recorrer todos los elementos relevantes en la página
+            $(".searchable").each(function(){
+                var elemento = $(this);
+                var contenido = elemento.text().toLowerCase(); // Obtener el texto del elemento y convertirlo a minúsculas
+                // Mostrar u ocultar el elemento según si coincide con la búsqueda
+                if(contenido.includes(textoBusqueda)) {
+                    elemento.show();
+                } else {
+                    elemento.hide();
+                }
+            });
+        });
+
+        // Evitar que el formulario se envíe
+        $("#search-form").submit(function(e){
+            e.preventDefault();
+        });
+    });
     $(document).ready(function() {
         // navigation click actions 
         $('.scroll-link').on('click', function(event){

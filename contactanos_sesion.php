@@ -82,7 +82,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="map">
-                        <img src="img/map.jpg" alt="">
+                        <img src="img/ubi.png" alt="">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -128,6 +128,12 @@
                         <ul>
                             <li>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="88611088846"><i class="fa fa-whatsapp"></i></a>
+                            </li>
+                            <li style="color: aliceblue;">
+                                Col. San Joaquin,Calle Nuevo Leon 140
                             </li>
                         </ul>
                     </div>

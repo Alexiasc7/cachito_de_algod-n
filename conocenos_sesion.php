@@ -59,7 +59,7 @@
                             <ul>
                                 <li>
                                     <div class="white-button">
-                                        <a href="index.html" class="scroll-link" >Descubre más</a>
+                                    <a href="instagram.com" class="scroll-link" >Instagram</a>
                                     </div>
                                 </li>
                             </ul>
@@ -132,6 +132,9 @@
                         <ul>
                             <li>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href=""><i class="fa fa-facebook"></i></a>
                             </li>
                         </ul>
                     </div>

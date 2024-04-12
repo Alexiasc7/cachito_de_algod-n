@@ -55,12 +55,17 @@
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
+                    <li style="margin-top: 15px;">
+                    <form id="search-form" class="search-form">
+                        <input type="text" id="search-input" placeholder="Buscar">
+                        <button type="submit" id="search-button">Buscar</button>
+                    </form>
+                </li>
                         <li><a href="index_sesion.php" >Inicio</a></li>
                         <li><a href="conocenos_sesion.php" >Conocenos</a></li>
                         <li><a href="contactanos_sesion.php" >Contacto</a></li>
-                        <li><a href="galeria.php"  >Proyectos</a></li>
-                        <li><a href="ideas.php" class="scroll-top">Ideas</a></li>
-                        <li><a href="tutos.php" >Tutoriales</a></li>
+                        <li><a href="galeria.php">Galeria</a></li>
+                        <li><a href="tutos.php" >Tutos</a></li>
                         <li><a href="cerrar_sesion.php">Cerrar sesion</a></li>
                     </ul>
                 </div>
@@ -75,12 +80,13 @@
         <div class="container">
             <div class="row">
                         <div class="thumb">
-                            <div class="page-content">
+                            <div class="page-content ">
                                 <?php foreach ($tblideas as $row) { ?>
-                                  <div class="project-item mix city">
-                                <div class="product-container">                            
+                                  <div class="project-item mix city searchable">
+                                <div class="product-container">    
+                                <h4 style="color: white; text-align: center; padding-top: 6px;"><?php echo $row ['nombre']; ?></h3><!--NOMBRE-->                        
                                     <img height="230px" width="270px" src="<?php echo $row ['imagen']; ?>" /><!--IMAGEN-->
-                                    <div class="hover-effect"  style="justify-content: center;">
+                                    <div class="hover-effect"  style="display: flex; justify-content: center; align-items: center;">
                                     <a href="<?php echo $row ['imagen']; ?>" data-lightbox="image-1"><i class="fa fa-search"></i></a>
                                        </div>
                                     </div>
@@ -122,18 +128,36 @@
             </div>
         </div>
     </footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
+<script src="js/vendor/bootstrap.min.js"></script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-
-    <script src="js/vendor/bootstrap.min.js"></script>
-
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
     <script type="text/javascript">
+    $(document).ready(function(){
+    // Manejar el evento de entrada en el campo de búsqueda
+    $("#search-input").on("input", function(){
+        var textoBusqueda = $(this).val().toLowerCase(); // Obtener el texto de búsqueda y convertirlo a minúsculas
+        // Recorrer todos los elementos relevantes en la página
+        $(".searchable").each(function(){
+            var elemento = $(this);
+            var contenido = elemento.text().toLowerCase(); // Obtener el texto del elemento y convertirlo a minúsculas
+            // Mostrar u ocultar el elemento según si coincide con la búsqueda
+            if(contenido.includes(textoBusqueda)) {
+                elemento.show();
+            } else {
+                elemento.hide();
+            }
+        });
+    });
+
+    // Evitar que el formulario se envíe
+    $("#search-form").submit(function(e){
+        e.preventDefault();
+    });
+});
     $(document).ready(function() {
         // navigation click actions 
         $('.scroll-link').on('click', function(event){

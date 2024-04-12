@@ -173,6 +173,12 @@
                 <!--/.navbar-header-->
                 <div id="main-nav" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
+                    <li style="margin-top: 15px;">
+                    <form id="search-form" class="search-form">
+                        <input type="text" id="search-input" placeholder="Buscar">
+                        <button type="submit" id="search-button">Buscar</button>
+                    </form>
+                </li>
                         <li><a href="index_sesion.php">Inicio</a></li>
                         <li><a href="admin.html">Regresar</a></li>
                         <li><a href="cerrar_sesion.php" class="scroll-top">Cerrar sesion</a></li>
@@ -197,7 +203,7 @@
                               <br>
                               <br>
                             </div>
-                            <form action="registro_tutos.php" method="post" id="formularioinsertar" name="formularioinsertar" enctype="multipart/form-data">                         
+                            <form class="searchable" action="registro_tutos.php" method="post" id="formularioinsertar" name="formularioinsertar" enctype="multipart/form-data">                         
                               <div class="form-group">
                                 <input type="text" id="id_tutorial" onkeypress="return soloLetras(event)" name="id_tutorial" value="<?php echo @$tutomod[0][0]; ?>"  hidden>     
                                 <input type="text" name="nombre" id="nombre" value="<?php echo @$tutomod[0][1]; ?>" class="form-login" placeholder="Titulo" required>
@@ -239,7 +245,7 @@
     </thead>    
             <tbody>
     <?php foreach ($result as $row) { ?>
-                <tr>
+                <tr class="searchable">
                 <td><?php echo $row[0]; ?></td>
                 <td><?php echo $row[1]; ?></td>
                 <td  align="center"><img height="100px" width="100px" src="<?php echo $row [2];?>" ></td>
@@ -291,6 +297,28 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
+    $(document).ready(function(){
+    // Manejar el evento de entrada en el campo de búsqueda
+    $("#search-input").on("input", function(){
+        var textoBusqueda = $(this).val().toLowerCase(); // Obtener el texto de búsqueda y convertirlo a minúsculas
+        // Recorrer todos los elementos relevantes en la página
+        $(".searchable").each(function(){
+            var elemento = $(this);
+            var contenido = elemento.text().toLowerCase(); // Obtener el texto del elemento y convertirlo a minúsculas
+            // Mostrar u ocultar el elemento según si coincide con la búsqueda
+            if(contenido.includes(textoBusqueda)) {
+                elemento.show();
+            } else {
+                elemento.hide();
+            }
+        });
+    });
+
+    // Evitar que el formulario se envíe
+    $("#search-form").submit(function(e){
+        e.preventDefault();
+    });
+});
     $(document).ready(function() {
         // navigation click actions 
         $('.scroll-link').on('click', function(event){
